@@ -10,15 +10,10 @@ RUN apk update && \
 
 RUN npm install --global gatsby --no-optional gatsby@1.9 
 
-RUN mkdir -p /site
-WORKDIR /site
-VOLUME /site
+RUN mkdir -p /www
+WORKDIR /www
+VOLUME /www
 
 COPY ./entry.sh /
 RUN chmod +x /entry.sh
 ENTRYPOINT ["/entry.sh"]
-
-
-
-
-

@@ -25,26 +25,26 @@ www/.cache
 
 ### Develop
 ```sh
-docker run -it --rm -v $(pwd)/www:/www -p 8000:8000 aripalo/gatsby-docker develop
+docker run -it --rm -v $(pwd)/site:/site -p 8000:8000 aripalo/gatsby-docker develop
 ```
 
 ### Stage
 
 In other words, build and serve:
 ```sh
-docker run -it --rm -v $(pwd)/www:/www -p 8000:8000 aripalo/gatsby-docker stage
+docker run -it --rm -v $(pwd)/site:/site -p 8000:8000 aripalo/gatsby-docker stage
 ```
 
 ### Build
 
 Builds production ready site into `site/public`:
 ```sh
-docker run -it --rm -v $(pwd)/www:/www -p 8000:8000 aripalo/gatsby-docker build
+docker run -it --rm -v $(pwd)/site:/site -p 8000:8000 aripalo/gatsby-docker build
 ```
 
 ### Run arbitary command inside the container
 ```sh
-docker run -it --rm -v $(pwd)/www:/www -p 8000:8000 aripalo/gatsby-docker <YOUR-COMMAND-HERE>
+docker run -it --rm -v $(pwd)/site:/site -p 8000:8000 aripalo/gatsby-docker <YOUR-COMMAND-HERE>
 ```
 
-For example to install a new NPM-module: `docker run -it --rm -v $(pwd)/www:/www aripalo/gatsby-docker yarn add gatsby-transformer-yaml`
+For example to install a new NPM-module: `docker run -it --rm -v $(pwd)/site:/site aripalo/gatsby-docker yarn add gatsby-transformer-yaml`

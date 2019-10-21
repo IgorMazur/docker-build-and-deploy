@@ -1,7 +1,7 @@
-#!/bin/sh
+#!/bin/bash
 set -e
 
-export GATSBY_DIR="/www"
+export GATSBY_DIR="/site"
 export PATH="$PATH:/usr/local/bin/gatsby"
 
 # Initialize Gatsby or run NPM install if needed
@@ -14,7 +14,8 @@ else
   if [ ! -e "$GATSBY_DIR/node_modules/" ]
   then
     echo "Node modules is empty. Running npm install..."
-    npm install
+    npm install --build-from-source sharp
+    yarn
 
   fi
 

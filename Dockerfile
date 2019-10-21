@@ -2,6 +2,9 @@ FROM ubuntu:19.04
 
 EXPOSE 8000
 
+# Force color propmt in shell
+RUN sed -e '/#force_color_prompt=yes/ s/^#*//g' -i ~/.bashrc
+
 RUN apt-get update
 RUN apt-get install -y nodejs curl git
 RUN apt-get install -y python gcc g++ make libvips-dev

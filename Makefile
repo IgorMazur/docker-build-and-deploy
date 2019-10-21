@@ -10,6 +10,12 @@ init:
 docker_build:
 	docker build --rm -t site .
 
+docker_run: docker_build
+	$(docker_run) $(cmd)
+
+docker_shell: docker_build
+	$(docker_run) /bin/bash
+
 gatsby_develop: docker_build
 	$(docker_run) develop
 
@@ -18,6 +24,3 @@ gatsby_stage: docker_build
 
 gatsby_build: docker_build
 	$(docker_run) build
-
-gatsby_run_cmd: docker_build
-	$(docker_run) <YOUR-COMMAND-HERE>

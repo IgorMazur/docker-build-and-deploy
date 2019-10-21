@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-export GATSBY_DIR="/site"
+export GATSBY_DIR="/www"
 export PATH="$PATH:/usr/local/bin/gatsby"
 
 # Initialize Gatsby or run NPM install if needed
@@ -41,6 +41,3 @@ else
   exec $@
 
 fi
-
-
-

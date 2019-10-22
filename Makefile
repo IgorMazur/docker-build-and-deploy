@@ -27,7 +27,7 @@ docker_run: assert_site_is_mounted
 	$(docker_run) $(image) $(cmd)
 
 docker_shell: assert_site_is_mounted
-	$(docker_run) $(image) /bin/bash
+	$(docker_run) $(image) /bin/sh
 
 gatsby_develop: assert_site_is_mounted
 	$(docker_run) $(bind_gatsby_port) $(image) develop

@@ -4,7 +4,7 @@ Develop &amp; Build [GatsbyJS](https://www.gatsbyjs.org/) static sites within a 
 - 🚮  **Clutter-free host machine**: No need to install Node/Gatsby/Webpack/etc on your host machine! Only Docker required (tested on `v17.12.0`).
 - 🏗  **Easy setup**: Automatic GatsbyJS site initializion with [`gatsby-starter-default`](http://gatsbyjs.github.io/gatsby-starter-default/) (unless already initialized)
 - 👍  **Simple CLI API**: [`develop`/`stage`/`build`](#usage)
-- 🆕  **Recent NodeJS**: Container based on NodeJS `v10.15.2` running in Ubuntu Linux
+- 🆕  **Recent NodeJS**: Container based on NodeJS `v10.15.2` running in Ubuntu Linux 19.04
 - 📃  [MIT](https://github.com/IgorMazur/gatsby-docker/blob/master/LICENSE)-licensed
 
 
@@ -15,9 +15,9 @@ Develop &amp; Build [GatsbyJS](https://www.gatsbyjs.org/) static sites within a 
 
 Add these to your `.gitignore`:
 ```
-www/node_modules
-www/public
-www/.cache
+site/node_modules
+site/public
+site/.cache
 ```
 
 
@@ -45,8 +45,10 @@ make gatsby_build
 
 ### Run arbitary command inside the container
 ```sh
-make 
-docker run -it --rm -v $(pwd)/site:/site -p 8000:8000 aripalo/gatsby-docker <YOUR-COMMAND-HERE>
+make docker_run cmd=<YOUR-COMMAND-HERE>
 ```
 
-For example to install a new NPM-module: `docker run -it --rm -v $(pwd)/site:/site aripalo/gatsby-docker yarn add gatsby-transformer-yaml`
+For example to install a new NPM-module:
+```sh
+make docker_run cmd=yarn add gatsby-transformer-yaml
+```

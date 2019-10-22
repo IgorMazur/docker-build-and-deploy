@@ -1,18 +1,20 @@
-FROM ubuntu:19.04
+FROM mhart/alpine-node:12
 
 EXPOSE 8000
 
-# Force color propmt in shell
-RUN sed -e '/#force_color_prompt=yes/ s/^#*//g' -i ~/.bashrc
+RUN apk update
+RUN apk add --update --no-cache --repository http://dl-3.alpinelinux.org/alpine/edge/community --repository http://dl-3.alpinelinux.org/alpine/edge/main vips-dev vips-tools
+RUN apk add fftw-dev gcc g++ make libc6-compat
+RUN apk add git
+RUN apk add python3
+RUN rm -rf /var/cache/apk/*
 
-RUN apt-get update
-RUN apt-get install -y nodejs curl git
-RUN apt-get install -y python gcc g++ make libvips-dev
-RUN curl https://www.npmjs.com/install.sh | sh
-RUN node -v
-RUN npm -v
 RUN npm install -g yarn gatsby-cli@2.7.50
 RUN gatsby telemetry --disable
+
+RUN node -v
+RUN npm -v
+RUN yarn -v
 
 RUN mkdir -p /site
 WORKDIR /site

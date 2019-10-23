@@ -15,7 +15,7 @@ else
   then
     echo "Node modules is empty. Running npm install..."
     npm install --build-from-source sharp
-    yarn
+    yarn --non-interactive
 
   fi
 

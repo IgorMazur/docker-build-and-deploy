@@ -1,0 +1,2 @@
+export GATSBY_ROOT=../your-project/gatsby-site
+export GATSBY_DOCKERFILE=$(PWD)/gatsby/Dockerfile.alpine

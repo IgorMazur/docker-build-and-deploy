@@ -8,3 +8,8 @@ init: assert_not_inited_yet
 
 assert_not_inited_yet:
 	@test ! -f ".makerc" || ( echo ".makerc already exists, you may want to edit it"; exit 1; )
+
+test_makerc:
+	echo $$GATSBY_ROOT
+	echo $$GATSBY_DOCKERFILE
+	echo $$PUBLIC_ROOT

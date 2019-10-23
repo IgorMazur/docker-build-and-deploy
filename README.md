@@ -10,7 +10,7 @@ Develop &amp; Build [GatsbyJS](https://www.gatsbyjs.org/) static sites within a 
 
 ## Setup
 
-**NOTE**: Your GatsbyJS site will be created into `$GATSBY_ROOT` define in `.makerc` automatically.
+**NOTE**: Your GatsbyJS site will be created into `$GATSBY_ROOT` defined in `.makerc` automatically.
 
 
 ## Usage
@@ -50,4 +50,12 @@ make gatsby__docker_run cmd=<YOUR-COMMAND-HERE>
 For example to install a new NPM-module:
 ```sh
 make gatsby__docker_run cmd=yarn add gatsby-transformer-yaml
+```
+
+### Run Nginx in production
+
+```sh
+make gatsby_build
+make nginx_stage_build
+make nginx_stage_run
 ```

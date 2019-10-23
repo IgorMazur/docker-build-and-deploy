@@ -1,7 +1,0 @@
-FROM nginx:alpine
-
-RUN rm /etc/nginx/nginx.conf
-RUN rm -f /etc/nginx/.htpasswd
-
-COPY ./nginx/nginx.conf.basic-auth /etc/nginx/nginx.conf
-COPY ./nginx/.htpasswd /etc/nginx/.htpasswd

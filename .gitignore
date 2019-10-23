@@ -1,4 +1,3 @@
 .DS_Store
-site
-temp
 .makerc
+.image_tag_stage

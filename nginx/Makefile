@@ -1,36 +1,20 @@
-proj_path_host=$(PWD)/site
-image=site
-tag := $(shell date +'%Y-%m-%d')
-tag_stage := stage_$(tag)
-temp_dir=./temp
-tar_filename=./temp/nginx.stage.tar
+nginx_image=nginx
+nginx_tag_base=base
+nginx_tag_stage := stage_$(shell date +'%Y-%m-%d.%H_%M')
+nginx_dockerfile_base=./nginx/Dockerfile.base
+nginx_dockerfile_stage=./nginx/Dockerfile.stage
 
-nginx_build:
-	docker rmi -f $(image):$(tag)
-	docker build -t $(image):$(tag) -f Dockerfile.nginx $$GATSBY_ROOT/public
+image_tag_stage=$(nginx_image):$(nginx_tag_stage)
+image_tag_stage_file=.image_tag_stage
 
-nginx_stage_build:
-	docker rmi -f nginx:base || true
-	docker build -t nginx:base -f Dockerfile.nginx.base.basic-auth .
-	docker rmi -f $(image):$(tag_stage)
-	docker build -t $(image):$(tag_stage) -f Dockerfile.nginx.stage `python -c 'import os.path; print(os.path.realpath("$(proj_path_host)/public"))'`
+nginx_base_build:
+	docker rmi -f $(nginx_image):$(nginx_tag_base) || true
+	docker build -t $(nginx_image):$(nginx_tag_base) -f $(nginx_dockerfile_base) $$GATSBY_ROOT
+
+nginx_stage_build: nginx_base_build
+	docker rmi -f $(image_tag_stage)
+	docker build -t $(image_tag_stage) -f $(nginx_dockerfile_stage) ./nginx
+	echo $(image_tag_stage) > $(image_tag_stage_file)
 
 nginx_stage_run:
-	docker run -d -p 80:80 -p 443:443 $(image):$(tag_stage)
-
-nginx_stage_publish:
-	mkdir -p $(temp_dir)
-	docker save -o $(tar_filename) $(image):$(tag_stage)
-	scp $(tar_filename) root@ecrops.stage:/root/images
-	# rm $(tar_filename)
-
-# .EXPORT_ALL_VARIABLES:
-# TEST_ENV=SUPER_TEST
-
-# test_env:
-# 	echo $$TEST_ENV
-
-include .makerc
-
-test_makerc:
-	echo $$TEST_ENV
+	docker run -d -p 80:80 -p 443:443 `cat $(image_tag_stage_file)`

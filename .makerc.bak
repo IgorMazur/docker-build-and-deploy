@@ -1,2 +1,3 @@
 export GATSBY_ROOT=../your-project/gatsby-site
 export GATSBY_DOCKERFILE=$(PWD)/gatsby/Dockerfile.alpine
+export PUBLIC_ROOT=$(shell ./helpers/realpath.py $(GATSBY_ROOT)/public)

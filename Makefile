@@ -1,4 +1,4 @@
-include .makerc
+sinclude .makerc
 include gatsby/Makefile
 include nginx/Makefile
 

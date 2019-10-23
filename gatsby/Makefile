@@ -1,5 +1,3 @@
-include .makerc
-
 container_root=/site
 
 docker_image=site

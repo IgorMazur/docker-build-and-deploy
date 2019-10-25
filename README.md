@@ -17,6 +17,8 @@ Develop &amp; Build [GatsbyJS](https://www.gatsbyjs.org/) static sites within a 
 
 ### Init
 
+Before your either start developing or running nginx in production you should init your environment with the following:
+
 ```sh
 make init
 # edit .makerc
